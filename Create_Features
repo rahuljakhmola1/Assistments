@@ -1,0 +1,27 @@
+features_1 <- function(df){
+  library(data.table)
+  dft <- as.data.table(df)
+  df_piv1 <- as.data.frame(dft[,.(isSTEM = max(isSTEM),
+                                  AveCarelessness = mean(AveCarelessness),
+                                  AveResBored = mean(AveResBored),
+                                  AveResEngcon = mean(AveResEngcon),
+                                  AveResConf = mean(AveResConf),
+                                  AveResFrust = mean(AveResFrust),
+                                  AveResOfftask = mean(AveResOfftask),
+                                  AveResGaming = mean(AveResGaming),
+                                  frWorkingInSchool = mean(frWorkingInSchool),
+                                  hint = mean(hint),
+                                  original = mean(original),
+                                  scaffold = mean(scaffold),
+                                  bottomHint = sum(bottomHint)/length(unique(problemId)),
+                                  frIsHelpRequest = sum(frIsHelpRequest)/max(totalFrAttempted),
+                                  stlHintUsed = mean(stlHintUsed),
+                                  timeTaken = mean(timeTaken),
+                                  helpAccessUnder2Sec = mean(helpAccessUnder2Sec),
+                                  timeGreater10SecAndNextActionRight = sum(timeGreater10SecAndNextActionRight)/sum(correct),
+                                  timeOver80 = mean(timeOver80)
+  ),by=list(ITEST_id)])
+  
+  return(df_piv1)
+}
+
